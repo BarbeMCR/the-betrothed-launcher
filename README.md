@@ -64,4 +64,4 @@ When this feature gets added, you will have to type a command to autoupdate. You
 You won't need to update if you don't want to.
 
 ### Have any other question?
-Post that by going in the `Community` tab.
+Post that by going in the `Discussions` tab.
