@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # BarbeMCR's The Betrothed Launcher, an easy-to-use installation manager for BarbeMCR's The Betrothed
-# Copyright (C) 2022  BarbeMCR
+# Copyright (C) 2023  BarbeMCR
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -24,6 +24,8 @@ import os
 import urllib.request
 import configparser
 import random
+import zipfile
+import io
 from list import list
 from play import play
 from install import install
@@ -42,9 +44,10 @@ from modernize import modernize, unmodernize
 from help import display_help
 
 def main():
-    version = "1.0.0"
-    build = 100
+    version = "1.1.0"
+    build = 110
     print_splash(version)
+    check_launcher_updates(build, version)
     check_game_updates()
     if sys.platform.startswith('win32'):
         ctypes.windll.kernel32.SetConsoleTitleW(f"BarbeMCR's The Betrothed Launcher {version}")
@@ -65,7 +68,7 @@ def print_splash(version):
     version -- the launcher version
     """
     print(f"BarbeMCR's The Betrothed Launcher {version}")
-    print("Copyright (C) 2022  BarbeMCR")
+    print("Copyright (C) 2023  BarbeMCR")
     print()
     print("This program comes with ABSOLUTELY NO WARRANTY.")
     print("This is free software, and you are welcome to redistribute it")
@@ -99,6 +102,45 @@ def check_game_updates():
                     pass
                 except urllib.error.URLError:
                     pass
+
+def check_launcher_updates(build, version):
+    """Check whether the launcher can be updated.
+    
+    Arguments:
+    build -- the current launcher build number
+    version -- the current launcher version string
+    """
+    try:
+        with urllib.request.urlopen('https://raw.githubusercontent.com/BarbeMCR/the-betrothed-launcher/main/latest_launcher.ini') as latest:
+            latest = latest.read().decode(latest.info().get_param('charset', 'utf-8'))
+        config = configparser.ConfigParser()
+        config.read_string(latest)
+        if int(config['latest']['id']) > build:
+            print("New launcher update available!")
+            print(f"Current version: {version}")
+            print(f"Latest  version: {config['latest']['version']}")
+            will_update = input(f"Do you want to update to launcher version {config['latest']['version']} now (y/n)? ")
+            if will_update.lower() == 'y':
+                if sys.platform.startswith('win32'):
+                    download_url = f"https://github.com/BarbeMCR/the-betrothed-launcher/releases/{config['latest']['version']}/launcher_{config['latest']['id']}.zip"
+                else:
+                    download_url = f"https://github.com/BarbeMCR/the-betrothed-launcher/releases/{config['latest']['version']}/launcher_{config['latest']['id']}_source.zip"
+                with urllib.request.urlopen(download_url) as download_file:
+                    archive_file = zipfile.ZipFile(io.BytesIO(download_file.read()))
+                archive_file.extractall('.')
+                print(f"Successfully updated launcher to version {config['latest']['version']}")
+                print("The launcher needs to be restarted to complete the update.")
+                input("Press 'return' to exit...")
+            else:
+                print()
+    except urllib.error.HTTPError:
+        print("Could not check for updates!")
+    except urllib.error.URLError:
+        print("Could not check for updates!")
+    except OSError:
+        print("Could not update!")
+    except Exception:
+        pass
 
 def parse():
     """Parse and run commands."""
@@ -214,7 +256,15 @@ def choose_random_splash():
         "Easier than ever!",
         "This is what you're gettin'!",
         "Why is this text-based?!?",
-        "Can you get enough of me?"
+        "Can you get enough of me?",
+        "What the heck is OOP?",
+        "We can try to understand!",
+        "Y2K compliant!",
+        "Wicked Child + Aquarius = Mood x2",
+        "Remember to turn your computer off before 03:14:07 on January 19th, 2038!",
+        "Now with autoupdates!",
+        "I was made for you!",
+        "I will live a thousand million lives!"
     ]
     return random.choice(splashes)
 

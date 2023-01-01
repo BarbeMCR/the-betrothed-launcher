@@ -118,7 +118,7 @@ def install(version, target=None):
                         print(error)
                 else:
                     print("Target contains whitespace and is not a valid installation name.")
-        except urllib.error.HTTPError:
+        except urllib.error.HTTPError as error:
             print(f"A network error occured. Code {error.code} was returned.")
         except urllib.error.URLError:
             print("Network error. Check your Internet connection and retry.")

@@ -1,9 +1,23 @@
 # BarbeMCR's The Betrothed Launcher, an easy-to-use installation manager for BarbeMCR's The Betrothed
-# Copyright (C) 2022  BarbeMCR
+# Copyright (C) 2023  BarbeMCR
 
 ++++++++++++++++++++++++++++++++++++++++++++++
 HISTORY OF "BarbeMCR's THE BETROTHED LAUNCHER"
 ++++++++++++++++++++++++++++++++++++++++++++++
+
+Release 1.1.0
+=============
+Python 3.11.1
+*Released on January 1st, 2023*
+### Autoupdate
+- Now the launcher will check for updates at startup
+  - If the launcher can be updated to a more recent version, a notification will be shown
+  - You will be able to choose whether you want to update or not (although it is recommended to keep your launcher up to date)
+  - If you deny the update, you will be returned to the usual command line interface
+  - Otherwise, if you updated, you will need to manually reopen the launcher, as it needs restarting to apply the update
+### Bugfixes
+- Now the launcher no longer crashes if a `urllib.error.HTTPError` gets raised while downloading an installation package (`install` command)
+- Now the launcher no longer crashes if a `urllib.error.HTTPError` or a `urllib.error.URLError` gets raised while downloading an update package (`update` command)
 
 Release 1.0.0
 =============
@@ -32,4 +46,4 @@ The launcher will likely use a system similar to the game itself.
 When this feature gets added, you will have to type a command to autoupdate. You will be alerted by a notification at startup if a new version of the launcher gets released.
 You won't need to update if you don't want to.
 ### Have any other question?
-Post that by going in the `Community` tab.
+Post that by going in the `Discussions` tab.

@@ -110,12 +110,17 @@ def _download(type, version, installation):
         version_exists = False
     if version_exists:
         print("Downloading update package...")
-        with urllib.request.urlopen(download_url) as download_file:
-            archive_file = zipfile.ZipFile(io.BytesIO(download_file.read()))
-        print("Updating...")
         try:
-            archive_file.extractall('./'+installation)
-            print(f"Successfully updated to version {version}")
-        except OSError as error:
-            print("The installation could not be updated. More details below.")
-            print(error)
+            with urllib.request.urlopen(download_url) as download_file:
+                archive_file = zipfile.ZipFile(io.BytesIO(download_file.read()))
+            print("Updating...")
+            try:
+                archive_file.extractall('./'+installation)
+                print(f"Successfully updated to version {version}")
+            except OSError as error:
+                print("The installation could not be updated. More details below.")
+                print(error)
+        except urllib.error.HTTPError as error:
+            print(f"A network error occured. Code {error.code} was returned.")
+        except urllib.error.URLError:
+            print("Network error. Check your Internet connection and retry.")
