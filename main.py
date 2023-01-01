@@ -44,8 +44,8 @@ from modernize import modernize, unmodernize
 from help import display_help
 
 def main():
-    version = "1.1.0"
-    build = 110
+    version = "1.1.1"
+    build = 111
     print_splash(version)
     check_launcher_updates(build, version)
     check_game_updates()
@@ -121,24 +121,28 @@ def check_launcher_updates(build, version):
             print(f"Latest  version: {config['latest']['version']}")
             will_update = input(f"Do you want to update to launcher version {config['latest']['version']} now (y/n)? ")
             if will_update.lower() == 'y':
-                if sys.platform.startswith('win32'):
-                    download_url = f"https://github.com/BarbeMCR/the-betrothed-launcher/releases/{config['latest']['version']}/launcher_{config['latest']['id']}.zip"
+                if os.path.isfile('./launcher.exe'):
+                    download_url = f"https://github.com/BarbeMCR/the-betrothed-launcher/releases/download/{config['latest']['version']}/launcher_{config['latest']['id']}.zip"
                 else:
-                    download_url = f"https://github.com/BarbeMCR/the-betrothed-launcher/releases/{config['latest']['version']}/launcher_{config['latest']['id']}_source.zip"
+                    download_url = f"https://github.com/BarbeMCR/the-betrothed-launcher/releases/download/{config['latest']['version']}/launcher_{config['latest']['id']}_source.zip"
                 with urllib.request.urlopen(download_url) as download_file:
                     archive_file = zipfile.ZipFile(io.BytesIO(download_file.read()))
                 archive_file.extractall('.')
                 print(f"Successfully updated launcher to version {config['latest']['version']}")
                 print("The launcher needs to be restarted to complete the update.")
                 input("Press 'return' to exit...")
+                sys.exit()
             else:
                 print()
     except urllib.error.HTTPError:
         print("Could not check for updates!")
+        print()
     except urllib.error.URLError:
         print("Could not check for updates!")
+        print()
     except OSError:
         print("Could not update!")
+        print()
     except Exception:
         pass
 

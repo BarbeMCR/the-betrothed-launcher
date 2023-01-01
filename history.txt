@@ -5,6 +5,14 @@
 HISTORY OF "BarbeMCR's THE BETROTHED LAUNCHER"
 ++++++++++++++++++++++++++++++++++++++++++++++
 
+Release 1.1.1
+=============
+Python 3.11.1
+*Released on January 1st, 2023*
+### Bugfixes
+- The launcher now autoupdates correctly (please install this version manually if you come from 1.1.0)
+- The launcher no longer requires a manual reboot after autoupdating
+
 Release 1.1.0
 =============
 Python 3.11.1
