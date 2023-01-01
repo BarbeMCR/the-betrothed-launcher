@@ -55,11 +55,10 @@ You are probably interested in whether you will be forced to using the launcher 
 The answer is, again, no. While it is easier to just use the launcher's `update` command (or set your favourite installation as the default one), you will still be able to use the in-game update service to update your game automatically.
 
 ### Will the launcher update itself?
-Not yet. I am, however, planning to add that functionality soon.
-
-The launcher will likely use a system similar to the game itself.
-
-When this feature gets added, you will have to type a command to autoupdate. You will be alerted by a notification at startup if a new version of the launcher gets released.
+Yes, altough you can choose whether to update to the latest version.
+Whenever you start the launcher up, if a newer version is available, you will be notified and will be able to accept or deny the update.
+If you choose to update, the launcher will do everything automatically.
+In order to apply the update, you will need to manually reopen the launcher.
 
 You won't need to update if you don't want to.
 
