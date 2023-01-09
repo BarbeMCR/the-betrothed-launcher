@@ -44,13 +44,13 @@ from modernize import modernize, unmodernize
 from help import display_help
 
 def main():
-    version = "1.1.1"
-    build = 111
+    version = "1.1.2"
+    build = 112
     print_splash(version)
-    check_launcher_updates(build, version)
-    check_game_updates()
     if sys.platform.startswith('win32'):
         ctypes.windll.kernel32.SetConsoleTitleW(f"BarbeMCR's The Betrothed Launcher {version}")
+    check_launcher_updates(build, version)
+    check_game_updates()
     try:
         while True:
             parse()
@@ -204,11 +204,15 @@ def parse():
         elif opcode == 'transfer':
             if len(args) == 2:
                 transfer(args[0], args[1])
+            elif len(args) == 3:
+                transfer(args[0], args[1], args[2])
             else:
                 print("Wrong arguments.")
         elif opcode == 'sync':
             if len(args) == 1 and args[0] is not None:
                 sync(args[0])
+            elif len(args) == 2:
+                sync(args[0], args[1])
             else:
                 print("Wrong arguments.")
         elif opcode == 'clean':

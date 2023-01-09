@@ -32,9 +32,16 @@ def unmodernize(installation):
     """
     if os.path.isdir('./'+installation):
         if os.path.isfile('./'+installation+'/.version'):
-            os.remove('./'+installation+'/.version')
-            print(f"Successfully removed version information from {installation}")
-            print("You should now add version information again by using 'modernize'.")
+            old = False
+            with open('./'+installation+'./.version') as ver_info:
+                if ver_info.readlines()[0].rstrip() in versions_db:
+                    old = True
+            if old:
+                os.remove('./'+installation+'/.version')
+                print(f"Successfully removed version information from {installation}")
+                print("You should now add version information again by using 'modernize'.")
+            else:
+                print("Installation is not pre-0.20!")
     else:
         print("Could not find installation.")
 

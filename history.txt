@@ -5,6 +5,18 @@
 HISTORY OF "BarbeMCR's THE BETROTHED LAUNCHER"
 ++++++++++++++++++++++++++++++++++++++++++++++
 
+Release 1.1.2
+=============
+Python 3.11.1
+*Released on January 9th, 2023*
+### transfer/sync
+- Now the `transfer` and `sync` commands ask whether to overwrite an existing savefile (you will be asked each time an existing file is encountered, for a total of 4 times per savefile)
+- Now the `transfer` and `sync` commands accept to be called like this: `transfer <installation> <target> silent` and `sync <installation> silent`
+  - When they are called this way, existing files will be automatically overwritten without asking
+  - This is equivalent to the old behavior
+### unmodernize
+- Now the `unmodernize` command checks whether the version manifest is pre-0.20
+
 Release 1.1.1
 =============
 Python 3.11.1
