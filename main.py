@@ -44,8 +44,8 @@ from modernize import modernize, unmodernize
 from help import display_help
 
 def main():
-    version = "1.1.2"
-    build = 112
+    version = "1.1.3"
+    build = 113
     print_splash(version)
     if sys.platform.startswith('win32'):
         ctypes.windll.kernel32.SetConsoleTitleW(f"BarbeMCR's The Betrothed Launcher {version}")
@@ -272,7 +272,11 @@ def choose_random_splash():
         "Remember to turn your computer off before 03:14:07 on January 19th, 2038!",
         "Now with autoupdates!",
         "I was made for you!",
-        "I will live a thousand million lives!"
+        "I will live a thousand million lives!",
+        "Instant replays included! (actually not, don't sue me plz)",
+        "I keep pushin' forwards but BarbeMCR keeps pullin' me backwards.",
+        "It's a human sign!",
+        "Look at where I ended up."
     ]
     return random.choice(splashes)
 

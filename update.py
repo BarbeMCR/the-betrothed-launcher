@@ -22,10 +22,8 @@ def update(installation, version='latest'):
                 if os.path.isfile('./'+installation+'/.version'):
                     with open('./'+installation+'/.version') as ver_info:
                         version_content = ver_info.readlines()
-                        old_version = version_content[0]
                         old_build = version_content[1]
                 else:
-                    old_version = 'unknown'
                     old_build = '0'
                 print("Checking latest version...")
                 with urllib.request.urlopen('https://raw.githubusercontent.com/BarbeMCR/the-betrothed/main/latest.ini') as latest:
@@ -50,7 +48,7 @@ def update(installation, version='latest'):
                     else:
                         print("Invalid installation. Please enter a valid BarbeMCR's The Betrothed installation name.")
                 else:
-                    print(f"Installation {installation} is already updated to the latest version ({old_version}).")
+                    print(f"Installation {installation} is already updated to the latest version.")
             else:
                 if os.path.isfile('./'+installation+'/the_betrothed.exe'):
                     if platform.version().startswith(('10.0', '6.3')):

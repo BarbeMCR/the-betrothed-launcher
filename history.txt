@@ -5,6 +5,15 @@
 HISTORY OF "BarbeMCR's THE BETROTHED LAUNCHER"
 ++++++++++++++++++++++++++++++++++++++++++++++
 
+Release 1.1.3
+=============
+Python 3.11.2
+*Released on February 11th, 2023*
+### Bugfixes
+- Fixed and cleaned an error string in `update`
+### Technical details
+- Updated to pyinstaller 5.8.0
+
 Release 1.1.2
 =============
 Python 3.11.1
