@@ -21,6 +21,16 @@ An easy-to-use installation manager for BarbeMCR's The Betrothed.
 
 **If you want the source code, it works like installing in UNIX**
 
+For compilation instructions on Windows, follow the guide in [the-betrothed](https://github.com/BarbeMCR/the-betrothed) with the following modifications:
+ - At step 1, download and extract `launcher_<version>_source.zip` instead of `the_betrothed_<version>_source.zip`;
+ - Skip step 6 where Pygame is installed;
+ - After following step 9, modify the command in step 8 as follows (keep the `^` symbols unless stated otherwise):
+   - change `--specpath <out>` to `--specpath <out>\spec`
+   - change `--name "the_betrothed"` to `--name "launcher"`
+   - change `--windowed` to `--console`
+   - remove `--icon <path_to_icon.ico> ^`
+ - Make sure to point `<path_to_main.py>` to the path to the launcher's `main.py` instead of the game's.
+
 ## FAQs for BarbeMCR's The Betrothed players
 
 ### What is this all about?
